@@ -1,32 +1,51 @@
 <!doctype html>
-<html>
+<html lang="en">
 <head>
-  <meta charset="utf-8">
-  <title>Productivity</title>
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <link rel="stylesheet" href="popup.css">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Productivity Reminder</title>
+  <link rel="stylesheet" href="popup.css" />
 </head>
 <body>
-  <div class="container">
-    <header>
-      <div class="logo">
-        <div class="bell" id="bell">🔔</div>
-        <h1>Reminders</h1>
+  <div class="app">
+    <header class="topbar">
+      <div class="brand">
+        <div class="logo">PR</div>
+        <div class="title">
+          <div class="name">Productivity</div>
+          <div class="sub">Reminders & streaks</div>
+        </div>
       </div>
-      <div class="streak" id="streak">🔥 0</div>
+      <div class="streak" id="streak" aria-live="polite">🔥 0</div>
     </header>
 
-    <main>
-      <form id="addForm">
-        <input id="taskTitle" placeholder="Add task (eg. Read chapter)" required />
-        <input id="taskTime" type="datetime-local"/>
-        <button type="submit">Add</button>
+    <main class="content">
+      <form id="addForm" class="task-form" autocomplete="off">
+        <div class="input-row">
+          <input id="taskTitle" class="title-input" type="text" placeholder="Add a task (e.g. Read chapter 4)" aria-label="Task title" required />
+        </div>
+
+        <div class="datetime-row">
+          <label class="datetime-label">
+            <input id="taskDate" type="date" aria-label="Date" />
+          </label>
+          <label class="datetime-label">
+            <input id="taskTime" type="time" aria-label="Time" />
+          </label>
+          <button class="btn add-btn" type="submit" title="Add task">Add</button>
+        </div>
       </form>
 
-      <ul id="taskList"></ul>
+      <section class="tasks" id="taskList" aria-live="polite">
+        <!-- tasks rendered here -->
+      </section>
+
+      <div class="empty-state" id="emptyState">No tasks yet — add your first reminder.</div>
     </main>
-    <footer>
-      <small>Built with ❤️</small>
+
+    <footer class="footer">
+      <button id="openSettings" class="btn ghost">Settings</button>
+      <small class="footnote">Local only • No data sent out</small>
     </footer>
   </div>
 
