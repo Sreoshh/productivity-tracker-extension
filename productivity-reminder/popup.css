@@ -1,0 +1,23 @@
+body { font-family: Arial, sans-serif; margin:0; padding:12px; width:340px; }
+.container { display:flex; flex-direction:column; gap:8px; }
+header { display:flex; justify-content:space-between; align-items:center; }
+.logo { display:flex; align-items:center; gap:8px; }
+.bell { font-size:22px; animation: ring 2s infinite; transform-origin: 50% 10%; }
+@keyframes ring {
+  0% { transform: rotate(0deg); }
+  10% { transform: rotate(15deg); }
+  20% { transform: rotate(-10deg); }
+  30% { transform: rotate(8deg); }
+  40% { transform: rotate(-6deg); }
+  50% { transform: rotate(4deg); }
+  60% { transform: rotate(-2deg); }
+  100% { transform: rotate(0deg); }
+}
+form { display:flex; gap:6px; }
+form input[type="text"], form input[type="datetime-local"] { flex:1; padding:6px; font-size:14px; }
+form input { padding:6px; font-size:14px; }
+form button { padding:6px 8px; }
+#taskList { list-style:none; padding:0; margin:8px 0; display:flex; flex-direction:column; gap:6px; max-height:280px; overflow:auto; }
+.task-item { display:flex; justify-content:space-between; align-items:center; padding:8px; border-radius:6px; background:#f6f6f6; }
+.task-item.completed { opacity:0.6; text-decoration:line-through; }
+.task-meta { font-size:11px; color:#666; }

@@ -1,0 +1,35 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Productivity</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div class="logo">
+        <div class="bell" id="bell">🔔</div>
+        <h1>Reminders</h1>
+      </div>
+      <div class="streak" id="streak">🔥 0</div>
+    </header>
+
+    <main>
+      <form id="addForm">
+        <input id="taskTitle" placeholder="Add task (eg. Read chapter)" required />
+        <input id="taskTime" type="datetime-local"/>
+        <button type="submit">Add</button>
+      </form>
+
+      <ul id="taskList"></ul>
+    </main>
+    <footer>
+      <small>Built with ❤️</small>
+    </footer>
+  </div>
+
+  <script src="popup.js"></script>
+</body>
+</html>
