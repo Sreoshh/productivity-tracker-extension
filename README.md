@@ -9,6 +9,9 @@ A small productivity reminder extension — add tasks, get notifications and inl
 - Streak tracking
 - Local storage (chrome.storage.local)
 
+## A Glimpse
+<img width="451" height="376" alt="Screenshot 2025-12-13 125258" src="https://github.com/user-attachments/assets/e216c732-f1b5-4404-914f-6cf4729dc513" />
+
 ## Install locally (for users)
 
 Option 1️⃣ Clone the repo
