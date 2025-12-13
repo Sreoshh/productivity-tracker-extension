@@ -10,12 +10,24 @@ A small productivity reminder extension — add tasks, get notifications and inl
 - Local storage (chrome.storage.local)
 
 ## Install locally (for users)
-1. Download the latest release zip from this repo (Releases tab).
-2. Unzip the folder.
-3. Open Chrome → `chrome://extensions/`.
-4. Toggle **Developer mode** ON.
-5. Click **Load unpacked** and select the extension folder.
 
+Option 1️⃣ Clone the repo
+git clone https://github.com/Sreoshh/productivity-tracker-extension.git
+Then:
+Open Chrome → chrome://extensions
+Turn Developer mode ON
+Click Load unpacked
+Select the cloned folder
+## How does it help you:
+✔ Extension works fully
+✔ Free
+✔ No publishing needed
+
+Option 2️⃣ Download ZIP from GitHub (simplest for users)
+Go to your repo page
+Click Code → Download ZIP
+Unzip the folder
+Load unpacked in chrome://extensions
 > No Chrome Web Store fee required if you install locally.
 
 ## To contribute / run locally
