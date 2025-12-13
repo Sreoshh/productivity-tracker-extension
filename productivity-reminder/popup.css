@@ -1,94 +1,138 @@
-:root{
-  --bg:#0b0b0b;          /* deep black */
-  --card:#0f0f0f;        /* slightly lighter black */
-  --accent:#d6c7b6;      /* beige */
-  --muted:#9c958f;       /* muted beige */
-  --glass: rgba(255,255,255,0.02);
-  --radius:12px;
-  --gap:10px;
-  --shadow: 0 8px 20px rgba(0,0,0,0.6);
-  --max-width:420px;
-  font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
-  -webkit-font-smoothing:antialiased;
-  -moz-osx-font-smoothing:grayscale;
+:root {
+  --bg: #0b0b0b;
+  --card: #141414;
+  --accent: #d6c7b6;
+  --muted: #9b948c;
+  --radius: 14px;
 }
 
-* { box-sizing: border-box; }
-html,body { height:100%; margin:0; padding:0; background:var(--bg); color:var(--accent); }
-.app { width:100%; max-width:var(--max-width); padding:14px; display:flex; flex-direction:column; gap:12px; }
+* {
+  box-sizing: border-box;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont;
+}
 
-/* Top bar */
-.topbar { display:flex; justify-content:space-between; align-items:center; gap:12px; }
-.brand { display:flex; align-items:center; gap:10px; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--accent);
+  width: 360px;
+}
+
+.app {
+  padding: 14px;
+}
+
+/* Header */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 14px;
+}
+
+.brand {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
 .logo {
-  width:44px; height:44px; border-radius:10px; background:linear-gradient(135deg,#0f0f0f,#1b1b1b);
-  display:flex; align-items:center; justify-content:center; font-weight:700; color:var(--accent);
-  font-size:16px; box-shadow:var(--shadow);
-}
-.title .name { font-size:15px; color:var(--accent); font-weight:600; }
-.title .sub { font-size:11px; color:var(--muted); margin-top:2px; }
-
-/* Streak pill */
-.streak { background:linear-gradient(90deg, rgba(214,199,182,0.12), rgba(214,199,182,0.06)); padding:8px 10px; border-radius:999px; color:var(--accent); font-weight:600; font-size:13px; }
-
-/* Content */
-.content { display:flex; flex-direction:column; gap:10px; }
-
-/* Form */
-.task-form { display:flex; flex-direction:column; gap:8px; }
-.input-row { display:flex; gap:8px; }
-.title-input {
-  flex:1; padding:10px 12px; border-radius:10px; border:1px solid rgba(255,255,255,0.04);
-  background:var(--card); color:var(--accent); font-size:13px; outline:none;
-  transition: box-shadow .12s ease;
-}
-.title-input:focus { box-shadow: 0 4px 14px rgba(214,199,182,0.07); }
-
-.datetime-row { display:flex; gap:8px; align-items:center; }
-.datetime-label { flex:1; display:block; }
-.datetime-label input[type="date"],
-.datetime-label input[type="time"] {
-  width:100%; padding:8px 10px; border-radius:10px; border:1px solid rgba(255,255,255,0.03);
-  background:var(--glass); color:var(--accent); font-size:13px; outline:none;
+  width: 42px;
+  height: 42px;
+  border-radius: 10px;
+  background: rgba(214,199,182,0.1);
+  display: grid;
+  place-items: center;
+  font-weight: bold;
 }
 
-/* Buttons */
-.btn {
-  background:linear-gradient(180deg,var(--accent), #cdbaa6); color:#0b0b0b; border:none; padding:8px 12px; border-radius:10px;
-  font-weight:700; cursor:pointer; min-width:56px;
-  box-shadow: 0 6px 18px rgba(0,0,0,0.45);
+h1 {
+  font-size: 15px;
+  margin: 0;
 }
-.btn:active { transform:translateY(1px); }
-.ghost { background:transparent; border:1px solid rgba(255,255,255,0.03); color:var(--muted); padding:6px 10px; }
 
-/* Tasks list */
-.tasks { display:flex; flex-direction:column; gap:8px; max-height:280px; overflow:auto; padding-right:6px; }
-.task-card {
-  display:flex; align-items:center; justify-content:space-between; gap:12px;
-  padding:10px; border-radius:10px; background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
-  border:1px solid rgba(255,255,255,0.02);
+.header p {
+  font-size: 12px;
+  margin: 0;
+  color: var(--muted);
 }
-.task-left { display:flex; align-items:center; gap:10px; flex:1; min-width:0; }
-.checkbox {
-  width:36px; height:36px; border-radius:9px; display:flex; align-items:center; justify-content:center;
-  background:transparent; border:1px solid rgba(255,255,255,0.04); color:var(--accent); font-weight:700; cursor:pointer;
+
+.streak {
+  background: rgba(214,199,182,0.1);
+  padding: 6px 10px;
+  border-radius: 999px;
+  font-size: 13px;
 }
-.task-meta { font-size:12px; color:var(--muted); overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
 
-/* completed */
-.task-card.completed { opacity:0.5; text-decoration:line-through; border-style:dashed; }
+/* Add task */
+.add-task {
+  background: var(--card);
+  padding: 12px;
+  border-radius: var(--radius);
+  margin-bottom: 12px;
+}
 
-/* empty state */
-.empty-state { color:var(--muted); font-size:13px; text-align:center; padding:12px 6px; }
+.add-task input {
+  width: 100%;
+  padding: 10px;
+  border-radius: 10px;
+  border: none;
+  background: #1c1c1c;
+  color: var(--accent);
+  margin-bottom: 8px;
+}
 
-/* footer */
-.footer { display:flex; align-items:center; justify-content:space-between; gap:8px; margin-top:6px; }
-.footnote { font-size:11px; color:var(--muted); }
+.time-row {
+  display: flex;
+  gap: 6px;
+}
 
-/* small screens adjustments */
-@media (max-width:380px) {
-  .app { padding:10px; }
-  .title-input { font-size:13px; }
-  .logo { width:40px; height:40px; font-size:14px; }
-  .streak { padding:6px 8px; font-size:12px; }
+.time-row input {
+  flex: 1;
+}
+
+.time-row button {
+  background: var(--accent);
+  color: #000;
+  border: none;
+  padding: 0 14px;
+  border-radius: 10px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+/* Tasks */
+.task-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.task {
+  background: var(--card);
+  padding: 10px;
+  border-radius: 12px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.task.done {
+  opacity: 0.5;
+  text-decoration: line-through;
+}
+
+.task button {
+  background: transparent;
+  border: 1px solid rgba(255,255,255,0.1);
+  color: var(--accent);
+  border-radius: 8px;
+  padding: 4px 8px;
+  cursor: pointer;
+}
+
+.empty {
+  text-align: center;
+  font-size: 13px;
+  color: var(--muted);
 }

@@ -2,51 +2,36 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Productivity Reminder</title>
   <link rel="stylesheet" href="popup.css" />
 </head>
 <body>
   <div class="app">
-    <header class="topbar">
+
+    <header class="header">
       <div class="brand">
-        <div class="logo">PR</div>
-        <div class="title">
-          <div class="name">Productivity</div>
-          <div class="sub">Reminders & streaks</div>
+        <div class="logo">P</div>
+        <div>
+          <h1>Productivity</h1>
+          <p>Focus & reminders</p>
         </div>
       </div>
-      <div class="streak" id="streak" aria-live="polite">🔥 0</div>
+      <div class="streak" id="streak">🔥 0</div>
     </header>
 
-    <main class="content">
-      <form id="addForm" class="task-form" autocomplete="off">
-        <div class="input-row">
-          <input id="taskTitle" class="title-input" type="text" placeholder="Add a task (e.g. Read chapter 4)" aria-label="Task title" required />
-        </div>
+    <section class="add-task">
+      <input id="taskTitle" type="text" placeholder="What do you need to do?" />
+      <div class="time-row">
+        <input id="taskDate" type="date" />
+        <input id="taskTime" type="time" />
+        <button id="addBtn">Add</button>
+      </div>
+    </section>
 
-        <div class="datetime-row">
-          <label class="datetime-label">
-            <input id="taskDate" type="date" aria-label="Date" />
-          </label>
-          <label class="datetime-label">
-            <input id="taskTime" type="time" aria-label="Time" />
-          </label>
-          <button class="btn add-btn" type="submit" title="Add task">Add</button>
-        </div>
-      </form>
+    <section id="taskList" class="task-list"></section>
+    <p id="empty" class="empty">No tasks yet</p>
 
-      <section class="tasks" id="taskList" aria-live="polite">
-        <!-- tasks rendered here -->
-      </section>
-
-      <div class="empty-state" id="emptyState">No tasks yet — add your first reminder.</div>
-    </main>
-
-    <footer class="footer">
-      <button id="openSettings" class="btn ghost">Settings</button>
-      <small class="footnote">Local only • No data sent out</small>
-    </footer>
   </div>
 
   <script src="popup.js"></script>
