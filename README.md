@@ -11,6 +11,8 @@ A small productivity reminder extension — add tasks, get notifications and inl
 
 ## A Glimpse
 <img width="451" height="376" alt="Screenshot 2025-12-13 125258" src="https://github.com/user-attachments/assets/e216c732-f1b5-4404-914f-6cf4729dc513" />
+> Screenshots reflect the current development version. UI and features may evolve.
+
 
 ## Install locally (for users)
 
