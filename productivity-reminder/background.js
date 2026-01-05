@@ -46,7 +46,7 @@ chrome.alarms.onAlarm.addListener(async alarm => {
   if (!alarm || !alarm.name) return;
   if (alarm.name === 'daily-midnight') {
     // could compute missed tasks or reset daily flags if needed
-    // For now, just log and reschedule alarms.
+    // For now, just logs and reschedule alarms.
     console.log('daily-midnight alarm fired');
     const res = await chrome.storage.local.get('state');
     if (res.state) {
@@ -61,21 +61,21 @@ chrome.alarms.onAlarm.addListener(async alarm => {
     const task = (state.tasks || []).find(t => t.id === id);
     if (!task) return;
     const today = new Date().toISOString().slice(0,10);
-    const completed = task.completedForDay === today;
-    if (!completed) {
-      chrome.notifications.create(`task-${id}-${Date.now()}`, {
-        type: 'basic',
-        title: 'Reminder: ' + task.title,
-        message: 'Tap to view or mark complete',
-        iconUrl: 'icons/icon128.png',
-        priority: 2,
-        buttons: [
-          { title: 'Complete' },
-          { title: 'Snooze 10m' }
-        ]
-      }, nid => {});
-      broadcastShowInlineReminder(task);
-    }
+    if (shouldRemind(task)) {
+  chrome.notifications.create(`task-${id}-${Date.now()}`, {
+    type: 'basic',
+    title: 'Reminder: ' + task.title,
+    message: 'Tap to view or mark complete',
+    iconUrl: 'icons/icon128.png',
+    priority: 2,
+    buttons: [
+      { title: 'Complete' },
+      { title: 'Snooze 10m' }
+    ]
+  });
+
+  broadcastShowInlineReminder(task);
+}
   }
 });
 
@@ -167,3 +167,55 @@ chrome.runtime.onMessage.addListener((msg, sender, reply) => {
     return true;
   }
 });
+
+
+function sameDay(a, b){
+  if(!a || !b) return false;
+  return new Date(a).toDateString() === new Date(b).toDateString();
+}
+
+function addDays(date, n){
+  const d = new Date(date);
+  d.setDate(d.getDate() + n);
+  return d;
+}
+
+function weekOfYear(d){
+  d = new Date(d);
+  const start = new Date(d.getFullYear(), 0, 1);
+  return Math.ceil((((d - start) / 86400000) + start.getDay() + 1) / 7);
+}
+
+
+function shouldRemind(task){
+  const now = new Date();
+
+  // snoozed?
+  if (task.snoozedUntil && now < new Date(task.snoozedUntil)) return false;
+
+  // default if not set
+  if (!task.frequency) return true;
+
+  switch(task.frequency.type){
+
+    case "once":
+      return sameDay(now, task.dueAt) && !task.completedForDay;
+
+    case "daily":
+      return !sameDay(now, task.lastCompletedOn);
+
+    case "weekly":
+      return weekOfYear(now) !== weekOfYear(task.lastCompletedOn);
+
+    case "monthly":
+      return now.getMonth() !== new Date(task.lastCompletedOn).getMonth();
+
+    case "custom":
+      return now >= addDays(task.lastCompletedOn || task.dueAt, task.frequency.days);
+
+    default:
+      return true;
+  }
+}
+
+

@@ -47,7 +47,7 @@ function showOverlay(task) {
   `;
   container.appendChild(wrap);
 
-  // Styles (isolated)
+  // Styles 
   const style = document.createElement("style");
   style.textContent = `
     .pr-box {

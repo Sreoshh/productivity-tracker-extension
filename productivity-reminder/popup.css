@@ -1,9 +1,14 @@
 :root {
   --bg: #0b0b0b;
   --card: #141414;
-  --accent: #d6c7b6;
+  --accent: #d6c7b6;      
   --muted: #9b948c;
   --radius: 14px;
+
+  /* light equivalents */
+  --light-bg: #ffffff;
+  --light-card: #f5f1eb;
+  --light-text: #6b5a49;   
 }
 
 * {
@@ -22,7 +27,8 @@ body {
   padding: 14px;
 }
 
-/* Header */
+/* HEADER */
+
 .header {
   display: flex;
   justify-content: space-between;
@@ -64,7 +70,8 @@ h1 {
   font-size: 13px;
 }
 
-/* Add task */
+/*  ADD TASK  */
+
 .add-task {
   background: var(--card);
   padding: 12px;
@@ -101,7 +108,8 @@ h1 {
   cursor: pointer;
 }
 
-/* Tasks */
+/* TASK LIST */
+
 .task-list {
   display: flex;
   flex-direction: column;
@@ -117,8 +125,12 @@ h1 {
   align-items: center;
 }
 
+.task .title {
+  color: var(--accent);   
+}
+
 .task.done {
-  opacity: 0.5;
+  opacity: 0.6;
   text-decoration: line-through;
 }
 
@@ -135,4 +147,94 @@ h1 {
   text-align: center;
   font-size: 13px;
   color: var(--muted);
+}
+
+/* FREQUENCY SIDE PANEL  */
+
+.panel {
+  background:#111;
+  padding:10px;
+  border-radius:10px;
+  margin-top:8px;
+}
+
+.hidden {
+  display:none;
+}
+
+.panel h4 {
+  margin:4px 0 8px 0;
+}
+
+/* SCROLLING BOUNDARY */
+html, body {
+  max-height: 600px;
+  width: 340px;
+  overflow-y: auto;
+}
+
+#frequencyPanel {
+  max-height: 220px;
+  overflow-y: auto;
+}
+
+/*  frequency text color fix */
+#frequencyPanel label {
+  color: var(--accent);      
+}
+
+/* THEMES  */
+
+body.dark {
+  background: #0f0f0f;
+  color: var(--accent);
+}
+
+body.light {
+  background: var(--light-bg);
+  color: var(--light-text);
+}
+
+body.light .add-task,
+body.light .task,
+body.light .panel {
+  background: var(--light-card);
+}
+
+body.light .title,
+body.light label {
+  color: var(--light-text);  
+}
+
+#themeToggle {
+  border-radius: 50%;
+  padding: 6px 8px;
+  cursor: pointer;
+  border: none;
+  background: #222;
+  color: white;
+}
+
+
+/*  BUTTON COLORS  */
+
+.task.done .title {
+  text-decoration: line-through;
+  opacity: 0.6;
+}
+
+.actions {
+  display: flex;
+  gap: 6px;
+}
+
+.deleteBtn {
+  background: #ffdddd;
+  color: #900;
+  border-radius: 6px;
+}
+
+.doneBtn {
+  background: #d6ffd6;
+  color: #064b00;
 }
