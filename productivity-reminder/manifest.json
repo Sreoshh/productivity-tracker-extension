@@ -1,8 +1,8 @@
 {
   "manifest_version": 3,
-  "name": "Productivity Reminder",
+  "name": "Task Manager",
   "version": "1.0.0",
-  "description": "Reminds you of tasks while browsing, animations, missed reminders and streaks.",
+  "description": "Reminds you of tasks while browsing and accounts your Daily Streaks!.",
   "icons": {
     "16": "icons/icon16.png",
     "48": "icons/icon48.png",
